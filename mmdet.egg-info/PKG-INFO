@@ -1,0 +1,81 @@
+Metadata-Version: 2.1
+Name: mmdet
+Version: 2.9.0
+Summary: OpenMMLab Detection Toolbox and Benchmark
+Home-page: https://github.com/open-mmlab/mmdetection
+Author: OpenMMLab
+Author-email: openmmlab@gmail.com
+License: Apache License 2.0
+Keywords: computer vision,object detection
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Description-Content-Type: text/markdown
+Provides-Extra: all
+Provides-Extra: tests
+Provides-Extra: build
+Provides-Extra: optional
+License-File: LICENSE
+
+### If you want to distill model in OpenMMLab related repos, please use [MMRazor](https://github.com/open-mmlab/mmrazor)!!
+### If you are intrested in KD，you also could contact me by Wechat, and I will invite you to the KD group.
+<img src="https://github.com/pppppM/mmsegmentation-distiller/blob/master/QR.jpeg" width="150" height="200" ><br/>
+
+This project is based on mmdetection(v-2.9.0), all the usage is the same as [mmdetection](https://mmdetection.readthedocs.io/en/latest/) including training , test and so on.
+
+# Distiller Zoo
+
+
+
+- [x] [Channel-wise Distillation for Semantic Segmentation](https://github.com/pppppM/mmdetection-distiller/tree/master/configs/distillers/cwd)
+- [ ] [Improve Object Detection with Feature-based Knowledge Distillation: Towards Accurate and Efficient Detectors](https://openreview.net/forum?id=uKhGRvM8QNH)
+
+
+
+# Installation
+
+* Set up a new conda environment: `conda create -n distiller python=3.7`
+
+* Install pytorch
+
+* [Install mmcv ( 1.2.4 <= mmcv-full < 1.3 )](https://github.com/open-mmlab/mmcv#installation)
+
+* Install mmdetection-distiller
+
+  ```bash
+  git clone https://github.com/pppppM/mmdetection-distiller.git
+  cd mmdetection-distiller
+  pip install -r requirements/build.txt
+  pip install -v -e .
+  ```
+
+# Train
+
+```
+#single GPU
+python tools/train.py configs/distillers/cwd/cwd_retina_rx101_64x4d_distill_retina_r50_fpn_2x_coco.py
+
+#multi GPU
+bash tools/dist_train.sh configs/distillers/cwd/cwd_retina_rx101_64x4d_distill_retina_r50_fpn_2x_coco.py 8
+```
+
+# Test
+
+```
+#single GPU
+python tools/test.py configs/distillers/cwd/cwd_retina_rx101_64x4d_distill_retina_r50_fpn_2x_coco.py $CHECKPOINT --eval bbox
+
+#multi GPU
+bash tools/dist_train.sh configs/distillers/cwd/cwd_retina_rx101_64x4d_distill_retina_r50_fpn_2x_coco.py $CHECKPOINT 8 --eval bbox
+```
+
+# Lisence
+
+This project is released under the [Apache 2.0 license](LICENSE).
+
+

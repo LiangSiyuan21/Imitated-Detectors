@@ -1,0 +1,23 @@
+_BASE_: "../../OS-Base-RCNN-C4.yaml"
+MODEL:
+  WEIGHTS: "//weight/ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 15
+INPUT:
+  MIN_SIZE_TRAIN: (480, 512, 544, 576, 608, 640, 672, 704, 736, 768, 800)
+  MIN_SIZE_TEST: 800
+  VIS_PERIOD: 500
+DATASETS:
+  TRAIN: ('voc_2007_trainval_base1', 'voc_2012_trainval_base1')
+  SEMI_TEST: ('voc_2007_trainval_novel1', 'voc_2012_trainval_novel1')
+  # TEST: ('voc_2007_test_base1',)
+SOLVER:
+  STEPS: (580, 960)
+  MAX_ITER:  1140 # 18000  # 17.4 epochs
+  WARMUP_ITERS: 1
+OUTPUT_DIR: "//ex_temp/osrcnn/checkpoints/voc/osrcnn/faster_rcnn_R_50_FPN_base1_bs16_e-2"
+TEST:
+  EVAL_PERIOD: 20

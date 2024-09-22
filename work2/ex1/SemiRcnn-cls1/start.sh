@@ -1,0 +1,1 @@
+python3 test_net_multi.py --num-gpus 8 --config-file ./ex1/SemiRcnn-cls5/configs/PASCAL_VOC/semi-base-training/R101_FPN_os_base_training_split1.yml

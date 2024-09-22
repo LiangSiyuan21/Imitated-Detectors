@@ -1,0 +1,1 @@
+python3 tools/visualize_voc_data.py
